@@ -1,0 +1,46 @@
+<form [formGroup]="workerForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="workers">
+        <div *ngFor="let workerGroup of workerForms.controls; let i = index">
+            <div [formGroupName]="i" class="worker-form">
+                <h3>Worker {{ i + 1 }}</h3>
+                <div>
+                    <label for="workerName">اسم العامل:</label>
+                    <input type="text" id="workerName" formControlName="workerName" required>
+                    <!-- Display validation errors if needed -->
+                </div>
+                <div>
+                    <label for="residencyNumber">رقم الإقامة:</label>
+                    <input type="text" id="residencyNumber" formControlName="residencyNumber" required>
+                    <!-- Display validation errors if needed -->
+                </div>
+                <div>
+                    <label for="typeOfConsent">نوع الموافقة:</label>
+                    <input type="text" id="typeOfConsent" formControlName="typeOfConsent" required>
+                    <!-- Display validation errors if needed -->
+                </div>
+                <div>
+                    <label for="nationality">الجنسية:</label>
+                    <input type="text" id="nationality" formControlName="nationality" required>
+                    <!-- Display validation errors if needed -->
+                </div>
+                <div>
+                    <label for="occupation">المهنة:</label>
+                    <input type="text" id="occupation" formControlName="occupation" required>
+                    <!-- Display validation errors if needed -->
+                </div>
+                <div>
+                    <label for="type">الحالة:</label>
+                    <input type="text" id="type" formControlName="type" required>
+                    <!-- Display validation errors if needed -->
+                </div>
+                <!-- Add other input fields for worker properties -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add worker button -->
+    <button type="button" (click)="addNewWorker()">إضافة عامل جديد</button>
+
+    <!-- Submit button -->
+    <button type="submit">إضافة العمال</button>
+</form>

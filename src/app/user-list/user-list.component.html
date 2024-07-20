@@ -1,0 +1,52 @@
+<table class="user-table">
+  <thead>
+    <tr>
+      <th>رقم الهوية</th>
+      <th>رقم القيد</th>
+      <th>رقم العملية</th>
+      <th>مهنة المستخدم </th>
+      <th>الرقم المسلسل للمستخدم</th>
+      <th>الاسم</th>
+      <th>تاريخ الإصدار</th>
+      <th>الصورة</th>
+      <th>تاريخ الحجز</th>
+      <th>الرقم المسلسل للزوجة</th>
+      <th>اسم الزوجة</th>
+      <th>النوع</th>
+      <th>الحالة</th>
+      <th>الجنسية</th>
+      <th>فئة الوظيفة</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.IdNumber }}</td>
+      <td>{{ user.outgoingNumber }}</td>
+      <td>{{ user.transactionNumber }}</td>
+      <td>{{ user.userOccupation }}</td>
+      <td>{{ user.userSerialNumber }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.releaseDate |removeTime }}</td>
+      <td><img style="width: 50px; height: 50px;" [src]="user.image" alt="" srcset=""></td>
+      <td>{{ user.dateBoking |removeTime }}</td>
+      <td>{{ user.WifeSerialNumber }}</td>
+      <td>{{ user.wifeName }}</td>
+      <td>{{ user.type }}</td>
+      <td>{{ user.condition }}</td>
+      <td>{{ user.nationality }}</td>
+      <td>{{ user.occupationCategory }}</td>
+      <td>
+        <button (click)="onUpdateButtonClick(user)">Edit</button>
+        <button (click)="deleteUser(user._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="add-user-button" (click)="goToAddUser()">إضافة بيانات المستخدمين الخاصة بالاستعلام عن تصاريح الزواج والاستعلام عن المعاملة </button>
+<button class="add-user-button" (click)="goToSponsor()">إضافة بيانات الكفيل والعامل الخاصة بالاستعلام العام عن المعاملات </button>
+<div class="pagination-container">
+  <pagination-controls (pageChange)="pageChanged($event)" [autoHide]="true"></pagination-controls>
+</div>
+
+

@@ -1,0 +1,48 @@
+<table class="visit-table">
+    <thead>
+        <tr>
+            <th>رقم الفيزا</th>
+            <th>رقم الجواز</th>
+            <th>الكود</th>
+            <th>رقم الطلب</th>
+            <th>تاريخ الميلاد</th>
+            <th>الاسم</th>
+            <th>صالح من</th>
+            <th>صالح حتى</th>
+            <th>نوع الفيزا</th>
+            <th>مدة الإقامة</th>
+            <th>مكان الإصدار</th>
+            <th>نوع الدخول</th>
+            <th>الجنسية</th>
+            <th>الغرض</th>
+            <th>الصورة</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let visit of visits">
+            <td>{{ visit.visaNo }}</td>
+            <td>{{ visit.passportNo }}</td>
+            <td>{{ visit.code }}</td>
+            <td>{{ visit.applicationNo }}</td>
+            <td>{{ visit.birthDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ visit.name }}</td>
+            <td>{{ visit.validFrom | date:'yyyy-MM-dd' }}</td>
+            <td>{{ visit.validUntil | date:'yyyy-MM-dd' }}</td>
+            <td>{{ visit.typeOfVisa }}</td>
+            <td>{{ visit.durationOfStay }}</td>
+            <td>{{ visit.placeOfIssue }}</td>
+            <td>{{ visit.entryType }}</td>
+            <td>{{ visit.nationality }}</td>
+            <td>{{ visit.purpose }}</td>
+            <td><img style="width: 50px; height: 50px;" [src]="visit.image" alt="visit image"></td>
+            <td>
+                <button (click)="deleteVisit(visit._id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="pagination-container">
+    <pagination-controls (pageChange)="pageChanged($event)" [autoHide]="true"></pagination-controls>
+      
+</div>

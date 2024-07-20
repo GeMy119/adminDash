@@ -1,0 +1,24 @@
+<form [formGroup]="sponsorForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="sponsorId">رقم هوية الكفيل:</label>
+        <input type="text" id="sponsorId" formControlName="sponsorId">
+        <!-- Display validation errors if needed -->
+    </div>
+    <div>
+        <label for="sourceNumber">رقم المصدر:</label>
+        <input type="text" id="sourceNumber" formControlName="sourceNumber">
+        <!-- Display validation errors if needed -->
+    </div>
+    <div>
+        <label for="name">اسم الكفيل:</label>
+        <input type="text" id="name" formControlName="name">
+        <!-- Display validation errors if needed -->
+    </div>
+    <div>
+        <label for="dateOfLastModification">تاريخ آخر تعديل:</label>
+        <input type="date" id="dateOfLastModification" formControlName="dateOfLastModification">
+        <!-- Display validation errors if needed -->
+    </div>
+
+    <button type="submit">تحديث الكفيل</button>
+</form>

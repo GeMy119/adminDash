@@ -1,0 +1,63 @@
+<!-- sponsor.component.html -->
+<h2>قائمة الكفلاء</h2>
+<table>
+  <thead>
+    <tr>
+      <th>رقم الهوية</th>
+      <th>رقم المصدر</th>
+      <th>اسم الكفيل</th>
+      <th>تاريخ آخر تعديل</th>
+      <th>بيانات العمال</th>
+      <th>إجراءات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sponsor of sponsors">
+      <td>{{ sponsor.sponsorId }}</td>
+      <td>{{ sponsor.sourceNumber }}</td>
+      <td>{{ sponsor.name }}</td>
+      <td>{{ sponsor.dateOfLastModification | removeTime }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let worker of sponsor.workers let i=index">
+            <div *ngIf="!worker.editMode">
+              <strong>اسم العامل:</strong> {{ worker.workerName }}<br>
+              <strong>رقم الإقامة:</strong> {{ worker.residencyNumber }}<br>
+              <strong>نوع العمل:</strong> {{ worker.occupation }}<br>
+              <strong>الجنسية:</strong> {{ worker.nationality }}<br>
+              <strong>الحالة:</strong> {{ worker.occupation }}<br>
+              <strong>نوع الموافقة</strong> {{ worker.typeOfConsent }}<br>
+              <button (click)="deleteWorker(sponsor._id,i,worker)" class="delete-worker-button">حذف العامل</button>
+              <button (click)="editWorker(worker)" class="update-worker-button">تعديل العامل</button>
+              <!-- Add other worker properties as needed -->
+            </div>
+            <div *ngIf="worker.editMode">
+              <!-- Input fields for editing -->
+              <input [(ngModel)]="worker.workerName" placeholder="Worker Name"><br>
+              <input [(ngModel)]="worker.residencyNumber" placeholder="Residency Number"><br>
+              <input [(ngModel)]="worker.nationality" placeholder="Residency Number"><br>
+              <input [(ngModel)]="worker.type" placeholder="Residency Number"><br>
+              <input [(ngModel)]="worker.occupation" placeholder="Residency Number"><br>
+              <input [(ngModel)]="worker.typeOfConsent" placeholder="Residency Number"><br>
+              <!-- Add other input fields for worker properties here -->
+
+              <!-- Save button -->
+              <button (click)="saveWorker(sponsor._id,i,worker)">Save</button>
+            </div>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button (click)="deleteSponsor(sponsor._id)" class="delete-button">حذف الكفيل</button>
+        <button (click)="goToUpdateSponsor(sponsor)" class="update-button">تحديث الكفيل</button>
+        <button (click)="addWorker(sponsor)" class="add-worker-button">إضافة عامل</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="goToAddSponsor()" class="add-worker-button">إضافة كفيل</button>
+
+<div class="pagination-container">
+  <pagination-controls (pageChange)="pageChanged($event)" [autoHide]="true"></pagination-controls>
+</div>

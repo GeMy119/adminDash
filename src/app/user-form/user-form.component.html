@@ -1,0 +1,64 @@
+<h4 style="text-align: center;" *ngIf="isFound">المستخدم موجود بالفعل</h4>
+<form (ngSubmit)="submitForm()" #userForm="ngForm">
+  <div>
+    <label for="IdNumber">رقم الهوية:</label>
+    <input type="text" id="IdNumber" name="IdNumber" [(ngModel)]="user.IdNumber" required>
+  </div>
+  <div>
+    <label for="outgoingNumber">رقم الصادر:</label>
+    <input type="text" id="outgoingNumber" name="outgoingNumber" [(ngModel)]="user.outgoingNumber" required>
+  </div>
+  <div>
+    <label for="transactionNumber">رقم العملية:</label>
+    <input type="text" id="transactionNumber" name="transactionNumber" [(ngModel)]="user.transactionNumber" required>
+  </div>
+  <div>
+    <label for="userOccupation">مهنة المستخدم:</label>
+    <input type="text" id="userOccupation" name="userOccupation" [(ngModel)]="user.userOccupation" required>
+  </div>
+  <div>
+    <label for="userSerialNumber">الرقم المسلسل للمستخدم:</label>
+    <input type="text" id="userSerialNumber" name="userSerialNumber" [(ngModel)]="user.userSerialNumber" required>
+  </div>
+  <div>
+    <label for="name">الاسم:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+  </div>
+  <div>
+    <label for="releaseDate">تاريخ الإصدار:</label>
+    <input type="date" id="releaseDate" name="releaseDate" [(ngModel)]="user.releaseDate" required>
+  </div>
+  <div>
+    <label for="image">الصورة:</label>
+    <input type="file" id="image" name="image" (change)="onFileSelected($event)">
+  </div>
+  <div>
+    <label for="dateBoking">تاريخ الحجز:</label>
+    <input type="date" id="dateBoking" name="dateBoking" [(ngModel)]="user.dateBoking" required>
+  </div>
+  <div>
+    <label for="WifeSerialNumber">الرقم المسلسل للزوجة:</label>
+    <input type="text" id="WifeSerialNumber" name="WifeSerialNumber" [(ngModel)]="user.WifeSerialNumber" required>
+  </div>
+  <div>
+    <label for="wifeName">اسم الزوجة:</label>
+    <input type="text" id="wifeName" name="wifeName" [(ngModel)]="user.wifeName" required>
+  </div>
+  <div>
+    <label for="type">النوع:</label>
+    <input type="text" id="type" name="type" [(ngModel)]="user.type" required>
+  </div>
+  <div>
+    <label for="condition">الحالة:</label>
+    <input type="text" id="condition" name="condition" [(ngModel)]="user.condition" required>
+  </div>
+  <div>
+    <label for="nationality">الجنسية:</label>
+    <input type="text" id="nationality" name="nationality" [(ngModel)]="user.nationality" required>
+  </div>
+  <div>
+    <label for="occupationCategory">فئة الوظيفة:</label>
+    <input type="text" id="occupationCategory" name="occupationCategory" [(ngModel)]="user.occupationCategory" required>
+  </div>
+  <button type="submit" [disabled]="userForm.invalid">إرسال</button>
+</form>

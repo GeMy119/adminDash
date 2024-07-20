@@ -1,0 +1,67 @@
+<form [formGroup]="sponsorForm" (ngSubmit)="onSubmit()" *ngIf="sponsorForm">
+  <div>
+    <label for="sponsorId">رقم هوية الكفيل:</label>
+    <input type="text" id="sponsorId" formControlName="sponsorId">
+    <!-- Display validation errors if needed -->
+  </div>
+  <div>
+    <label for="sourceNumber">رقم المصدر:</label>
+    <input type="text" id="sourceNumber" formControlName="sourceNumber">
+    <!-- Display validation errors if needed -->
+  </div>
+  <div>
+    <label for="name">اسم الكفيل:</label>
+    <input type="text" id="name" formControlName="name">
+    <!-- Display validation errors if needed -->
+  </div>
+  <div>
+    <label for="dateOfLastModification">تاريخ آخر تعديل:</label>
+    <input type="date" id="dateOfLastModification" formControlName="dateOfLastModification">
+    <!-- Display validation errors if needed -->
+  </div>
+
+  <!-- Worker input fields -->
+  <div formArrayName="workers">
+    <div *ngFor="let worker of sponsorForm.get('workers').controls; let i=index">
+      <div [formGroupName]="i">
+        <h3>Worker {{ i + 1 }}</h3>
+        <div>
+          <label for="workerName">اسم العامل:</label>
+          <input type="text" id="workerName" formControlName="workerName">
+          <!-- Display validation errors if needed -->
+        </div>
+        <div>
+          <label for="residencyNumber">رقم الإقامة:</label>
+          <input type="text" id="residencyNumber" formControlName="residencyNumber">
+          <!-- Display validation errors if needed -->
+        </div>
+        <div>
+          <label for="typeOfConsent">نوع الموافقة:</label>
+          <input type="text" id="typeOfConsent" formControlName="typeOfConsent">
+          <!-- Display validation errors if needed -->
+        </div>
+        <div>
+          <label for="nationality">الجنسية:</label>
+          <input type="text" id="nationality" formControlName="nationality">
+          <!-- Display validation errors if needed -->
+        </div>
+        <div>
+          <label for="occupation">المهنة</label>
+          <input type="text" id="occupation" formControlName="occupation">
+          <!-- Display validation errors if needed -->
+        </div>
+        <div>
+          <label for="type">الحالة</label>
+          <input type="text" id="type" formControlName="type">
+          <!-- Display validation errors if needed -->
+        </div>
+        <!-- Add other input fields for worker properties -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Add worker button -->
+  <button type="button" (click)="addWorker()">إضافة عامل</button>
+
+  <button type="submit">إضافة الكفيل</button>
+</form>

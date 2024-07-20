@@ -1,0 +1,58 @@
+<!-- update-user-form.component.html -->
+<h2>نموذج تحديث المستخدم</h2>
+<form [formGroup]="userForm" (ngSubmit)="submitForm()">
+    <div>
+        <label for="IdNumber">رقم الهوية:</label>
+        <input type="text" id="IdNumber" formControlName="IdNumber" required>
+    </div>
+    <div>
+        <label for="outgoingNumber">رقم الصادر:</label>
+        <input type="text" id="outgoingNumber" formControlName="outgoingNumber" required>
+    </div>
+    <div>
+        <label for="transactionNumber">رقم العملية:</label>
+        <input type="text" id="transactionNumber" formControlName="transactionNumber" required>
+    </div>
+    <div>
+        <label for="userOccupation">مهنة المستخدم:</label>
+        <input type="text" id="userOccupation" formControlName="userOccupation" required>
+    </div>
+    <div>
+        <label for="userSerialNumber">الرقم المسلسل للمستخدم:</label>
+        <input type="text" id="userSerialNumber" formControlName="userSerialNumber" required>
+    </div>
+    <div>
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" formControlName="name" required>
+    </div>
+    <div>
+        <label for="releaseDate">تاريخ الإصدار:</label>
+        <input type="date" id="releaseDate" formControlName="releaseDate" required>
+    </div>
+    <div>
+        <label for="dateBoking">تاريخ الحجز:</label>
+        <input type="date" id="dateBoking" formControlName="dateBoking" required>
+    </div>
+    <div>
+        <label for="WifeSerialNumber">الرقم المسلسل للزوجة:</label>
+        <input type="text" id="WifeSerialNumber" formControlName="WifeSerialNumber" required>
+    </div>
+    <div>
+        <label for="wifeName">اسم الزوجة:</label>
+        <input type="text" id="wifeName" formControlName="wifeName" required>
+    </div>
+    <div>
+        <label for="type">النوع:</label>
+        <input type="text" id="type" formControlName="type" required>
+    </div>
+    <div>
+        <label for="condition">الحالة:</label>
+        <input type="text" id="condition" formControlName="condition" required>
+    </div>
+    <div>
+        <label for="nationality">الجنسية:</label>
+        <input type="text" id="nationality" formControlName="nationality" required>
+    </div>
+    <!-- Add input for image -->
+    <button type="submit">تحديث المستخدم</button>
+</form>
