@@ -8,8 +8,7 @@ export interface Environment {
 }
 export const environment: Environment = {
   production: false,
-  // apiUrl: "https://api.saudiservices.site"
-  apiUrl: "http://localhost:8080"
+  apiUrl: "https://api.saudiservices.site"
 
 };
 
