@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,8 +19,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AddVisitFormComponent } from './add-visit-form/add-visit-form.component';
 import { VisitListComponent } from './visit-list/visit-list.component';
 import { UpdateUserFormComponent } from './update-user-form/update-user-form.component'; // إضافة استيراد UpdateUserFormComponent
+import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     UserListComponent,
@@ -35,6 +37,7 @@ import { UpdateUserFormComponent } from './update-user-form/update-user-form.com
     HeaderComponent, // تأكد من إضافة HeaderComponent
     AddVisitFormComponent,
     VisitListComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,11 @@ import { UpdateUserFormComponent } from './update-user-form/update-user-form.com
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgbModule,
+    NgbAccordionModule,
+
+
   ],
   providers: [
     SponsorService,

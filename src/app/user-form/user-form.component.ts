@@ -14,6 +14,8 @@ export class UserFormComponent implements OnInit {
   isFound: boolean = false; // Flag to show if user is found
   formData: FormData = new FormData(); // Initialize FormData object
   selectedImageFile: File | null = null; // File for image upload
+  existingUser: any = null; // Variable to store existing user data
+  errorMessage: string = ''; // Variable to store error messages
 
   constructor(private userService: UserFormService, private router: Router) { }
 
@@ -46,21 +48,71 @@ export class UserFormComponent implements OnInit {
       catchError(error => {
         if (error.status === 409) {
           this.isFound = true;
+          this.existingUser = error.error.existingUser;
+        } else {
+          this.errorMessage = 'حدث خطأ أثناء إضافة المستخدم. حاول مرة أخرى.';
           console.error('Error adding/editing user:', error);
         }
         return throwError(error); // Rethrow the error
       })
     ).subscribe(response => {
-      console.log(response);
-      this.router.navigate(['/user-list']);
-      // Optionally navigate to another page
-      // this.router.navigate(['/user-list']);
+      if (response) {
+        console.log(response);
+        this.router.navigate(['/user-list']);
+      }
     });
+  }
+  get marriagePermitDeviceInfo(): any {
+    try {
+      const parsedDeviceInfo = JSON.parse(this.existingUser.marriagePermitDevice);
+      const datetime = new Date(parsedDeviceInfo.datetime);
+
+      return {
+        os: parsedDeviceInfo.os || 'غير متوفر',
+        device: parsedDeviceInfo.device || 'غير متوفر',
+        browser: parsedDeviceInfo.browser || 'غير متوفر',
+        date: datetime.toLocaleDateString('ar-EG') || 'غير متوفر',
+        time: datetime.toLocaleTimeString('ar-EG') || 'غير متوفر'
+      };
+    } catch (error) {
+      return {
+        os: 'غير متوفر',
+        device: 'غير متوفر',
+        browser: 'غير متوفر',
+        date: 'غير متوفر',
+        time: 'غير متوفر'
+      };
+    }
+  }
+  get transactionSearchDeviceInfo(): any {
+    try {
+      const parsedDeviceInfo = JSON.parse(this.existingUser.transactionSearchDevice);
+      const datetime = new Date(parsedDeviceInfo.datetime);
+
+      return {
+        os: parsedDeviceInfo.os || 'غير متوفر',
+        device: parsedDeviceInfo.device || 'غير متوفر',
+        browser: parsedDeviceInfo.browser || 'غير متوفر',
+        date: datetime.toLocaleDateString('ar-EG') || 'غير متوفر',
+        time: datetime.toLocaleTimeString('ar-EG') || 'غير متوفر'
+      };
+    } catch (error) {
+      return {
+        os: 'غير متوفر',
+        device: 'غير متوفر',
+        browser: 'غير متوفر',
+        date: 'غير متوفر',
+        time: 'غير متوفر'
+      };
+    }
   }
 
   clearForm(): void {
     this.user = {}; // Reset user data
     this.selectedImageFile = null; // Clear the selected image file
     this.formData = new FormData(); // Reset FormData
+    this.isFound = false; // Reset the isFound flag
+    this.existingUser = null; // Clear existing user data
+    this.errorMessage = ''; // Clear error message
   }
 }

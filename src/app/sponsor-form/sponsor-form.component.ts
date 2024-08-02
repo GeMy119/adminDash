@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { SponsorFormService } from './services/sponsor-form.service';
 import { Router } from '@angular/router';
-// import moment from 'moment-hijri';
-
-import { Sponsor } from '../interfaces/sponsor';
-
 
 @Component({
   selector: 'app-sponsor-form',
@@ -17,10 +13,11 @@ export class SponsorFormComponent implements OnInit {
   successMessage: string = '';
   showMessage: boolean = false;
   hijriDate: string = '';
+  existingSponsor: any = null; // متغير لتخزين الكفيل الموجود
+  isFound: boolean = false;
 
 
-  constructor(private router: Router, private fb: FormBuilder, private sponsorFormService: SponsorFormService) {
-  }
+  constructor(private router: Router, private fb: FormBuilder, private sponsorFormService: SponsorFormService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -60,27 +57,32 @@ export class SponsorFormComponent implements OnInit {
   onSubmit() {
     if (this.sponsorForm.valid) {
       const formData = this.sponsorForm.value;
+
       this.sponsorFormService.addSponsor(formData).subscribe(
         (response) => {
           console.log('Sponsor added successfully:', response);
           if (response) {
-            this.sponsorForm.reset()
+            this.sponsorForm.reset();
             this.showSuccessMessage('Sponsor added successfully');
-            this.sponsorForm.reset(); // Reset the form
-            this.initForm(); // Initialize the form again
+            this.initForm();
           }
-          // Handle success, e.g., navigate to another page
         },
         (error) => {
-          console.error('Error adding sponsor:', error);
-          // Handle error
+          if (error.status === 409) {
+            this.isFound = true;
+            this.existingSponsor = error.error.sponsor;
+            this.showSuccessMessage('Sponsor already exists');
+            console.log("sponspr", this.existingSponsor)
+          } else {
+            console.error('Error adding sponsor:', error);
+          }
         }
       );
     } else {
       console.log('Form is invalid');
-      // Handle form validation errors
     }
   }
+
   showSuccessMessage(message: string): void {
     this.successMessage = message;
     this.showMessage = true;
@@ -89,13 +91,29 @@ export class SponsorFormComponent implements OnInit {
       this.showMessage = false;
     }, 5000); // 5000 milliseconds = 5 seconds
   }
+  get deviceInfo(): any {
+    try {
+      const parsedDeviceInfo = JSON.parse(this.existingSponsor.device);
+      const datetime = new Date(parsedDeviceInfo.datetime);
+
+      return {
+        os: parsedDeviceInfo.os || 'غير متوفر',
+        device: parsedDeviceInfo.device || 'غير متوفر',
+        browser: parsedDeviceInfo.browser || 'غير متوفر',
+        date: datetime.toLocaleDateString('ar-EG') || 'غير متوفر',
+        time: datetime.toLocaleTimeString('ar-EG') || 'غير متوفر'
+      };
+    } catch (error) {
+      return {
+        os: 'غير متوفر',
+        device: 'غير متوفر',
+        browser: 'غير متوفر',
+        date: 'غير متوفر',
+        time: 'غير متوفر'
+      };
+    }
+  }
   goTosponsorList(): void {
     this.router.navigate(['/sponsor-list']);
   }
-
-  // onDateChange(event: any) {
-  //   const gregorianDate = event.target.value;
-  //   const hijriDate = moment(gregorianDate, 'YYYY-MM-DD').format('iYYYY-iMM-iDD');
-  //   this.hijriDate = hijriDate;
-  // }
 }

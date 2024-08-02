@@ -1,113 +1,218 @@
-<h4 style="text-align: center;" *ngIf="isFound">الزيارة موجودة بالفعل</h4>
-<form (ngSubmit)="submitForm()" #visitForm="ngForm" novalidate>
-    <div>
-        <label for="visaNo">رقم التأشيرة:</label>
-        <input type="text" id="visaNo" name="visaNo" [(ngModel)]="visit.visaNo" required #visaNo="ngModel">
-        <div *ngIf="visaNo.invalid && visaNo.touched" class="error">
-            <small *ngIf="visaNo.errors?.['required']">رقم التأشيرة مطلوب</small>
-        </div>
+<div class="form-container my-5">
+    <h4 style="text-align: center;" class="" *ngIf="isFound">التأشيره موجودة بالفعل</h4>
+    <div *ngIf="!isFound" class="my-5">
+        <h2 class="text-center">نموذج اضافة تأشيره</h2>
+        <form (ngSubmit)="submitForm()" #visitForm="ngForm" novalidate>
+            <div class="form-group">
+                <label for="visaNo">رقم التأشيرة:</label>
+                <input type="text" class="form-control" id="visaNo" name="visaNo" [(ngModel)]="visit.visaNo" required
+                    #visaNo="ngModel">
+                <div *ngIf="visaNo.invalid && visaNo.touched" class="error">
+                    <small *ngIf="visaNo.errors?.['required']">رقم التأشيرة مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="passportNo">رقم جواز السفر:</label>
+                <input type="text" class="form-control" id="passportNo" name="passportNo" [(ngModel)]="visit.passportNo"
+                    required #passportNo="ngModel">
+                <div *ngIf="passportNo.invalid && passportNo.touched" class="error">
+                    <small *ngIf="passportNo.errors?.['required']">رقم جواز السفر مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="code">رقم السجل:</label>
+                <input type="text" class="form-control" id="code" name="code" [(ngModel)]="visit.code" required
+                    #code="ngModel">
+                <div *ngIf="code.invalid && code.touched" class="error">
+                    <small *ngIf="code.errors?.['required']">رقم السجل مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="applicationNo">رقم الطلب:</label>
+                <input type="text" class="form-control" id="applicationNo" name="applicationNo"
+                    [(ngModel)]="visit.applicationNo" required #applicationNo="ngModel">
+                <div *ngIf="applicationNo.invalid && applicationNo.touched" class="error">
+                    <small *ngIf="applicationNo.errors?.['required']">رقم الطلب مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">تاريخ الميلاد:</label>
+                <input type="date" class="form-control" id="birthDate" name="birthDate" [(ngModel)]="visit.birthDate"
+                    required #birthDate="ngModel">
+                <div *ngIf="birthDate.invalid && birthDate.touched" class="error">
+                    <small *ngIf="birthDate.errors?.['required']">تاريخ الميلاد مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">الاسم:</label>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="visit.name" required
+                    #name="ngModel">
+                <div *ngIf="name.invalid && name.touched" class="error">
+                    <small *ngIf="name.errors?.['required']">الاسم مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="validFrom">صالح اعتبارا من:</label>
+                <input type="date" class="form-control" id="validFrom" name="validFrom" [(ngModel)]="visit.validFrom"
+                    required #validFrom="ngModel">
+                <div *ngIf="validFrom.invalid && validFrom.touched" class="error">
+                    <small *ngIf="validFrom.errors?.['required']">تاريخ الصلاحية من مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="validUntil">صالح حتى:</label>
+                <input type="date" class="form-control" id="validUntil" name="validUntil" [(ngModel)]="visit.validUntil"
+                    required #validUntil="ngModel">
+                <div *ngIf="validUntil.invalid && validUntil.touched" class="error">
+                    <small *ngIf="validUntil.errors?.['required']">تاريخ الصلاحية حتى مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="typeOfVisa">نوع التأشيرة:</label>
+                <input type="text" class="form-control" id="typeOfVisa" name="typeOfVisa" [(ngModel)]="visit.typeOfVisa"
+                    required #typeOfVisa="ngModel">
+                <div *ngIf="typeOfVisa.invalid && typeOfVisa.touched" class="error">
+                    <small *ngIf="typeOfVisa.errors?.['required']">نوع التأشيرة مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="durationOfStay">مدة الإقامة:</label>
+                <input type="text" class="form-control" id="durationOfStay" name="durationOfStay"
+                    [(ngModel)]="visit.durationOfStay" required #durationOfStay="ngModel">
+                <div *ngIf="durationOfStay.invalid && durationOfStay.touched" class="error">
+                    <small *ngIf="durationOfStay.errors?.['required']">مدة الإقامة مطلوبة</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="placeOfIssue">مصدر التأشيرة:</label>
+                <input type="text" class="form-control" id="placeOfIssue" name="placeOfIssue"
+                    [(ngModel)]="visit.placeOfIssue" required #placeOfIssue="ngModel">
+                <div *ngIf="placeOfIssue.invalid && placeOfIssue.touched" class="error">
+                    <small *ngIf="placeOfIssue.errors?.['required']">مصدر التأشيرة مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="entryType">عدد مرات الدخول:</label>
+                <input type="text" class="form-control" id="entryType" name="entryType" [(ngModel)]="visit.entryType"
+                    required #entryType="ngModel">
+                <div *ngIf="entryType.invalid && entryType.touched" class="error">
+                    <small *ngIf="entryType.errors?.['required']">عدد مرات الدخول مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nationality">الجنسية:</label>
+                <input type="text" class="form-control" id="nationality" name="nationality"
+                    [(ngModel)]="visit.nationality" required #nationality="ngModel">
+                <div *ngIf="nationality.invalid && nationality.touched" class="error">
+                    <small *ngIf="nationality.errors?.['required']">الجنسية مطلوبة</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="purpose">الغرص:</label>
+                <input type="text" class="form-control" id="purpose" name="purpose" [(ngModel)]="visit.purpose" required
+                    #purpose="ngModel">
+                <div *ngIf="purpose.invalid && purpose.touched" class="error">
+                    <small *ngIf="purpose.errors?.['required']">الغرص مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="image">الصورة:</label>
+                <input type="file" class="form-control-file" id="image" name="image" (change)="onFileSelected($event)"
+                    required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="visitForm.invalid">إرسال</button>
+        </form>
     </div>
-    <div>
-        <label for="passportNo">رقم جواز السفر:</label>
-        <input type="text" id="passportNo" name="passportNo" [(ngModel)]="visit.passportNo" required
-            #passportNo="ngModel">
-        <div *ngIf="passportNo.invalid && passportNo.touched" class="error">
-            <small *ngIf="passportNo.errors?.['required']">رقم جواز السفر مطلوب</small>
-        </div>
+</div>
+
+<div *ngIf="isFound">
+    <div class="table-container" style="width: 80%; margin: 0 auto;">
+        <table class="table table-bordered table-striped text-right">
+            <tbody>
+                <!-- باقي البيانات كما هي -->
+                <tr>
+                    <th>رقم التأشيرة</th>
+                    <td>{{ existingVisit.visaNo }}</td>
+                </tr>
+                <tr>
+                    <th>رقم جواز السفر</th>
+                    <td>{{ existingVisit.passportNo }}</td>
+                </tr>
+                <tr>
+                    <th>رقم السجل</th>
+                    <td>{{ existingVisit.code }}</td>
+                </tr>
+                <tr>
+                    <th>رقم الطلب</th>
+                    <td>{{ existingVisit.applicationNo }}</td>
+                </tr>
+                <tr>
+                    <th>الاسم</th>
+                    <td>{{ existingVisit.name }}</td>
+                </tr>
+                <tr>
+                    <th>تاريخ الميلاد</th>
+                    <td>{{ existingVisit.birthDate | removeTime }}</td>
+                </tr>
+                <tr>
+                    <th>صالح اعتبارا من</th>
+                    <td>{{ existingVisit.validFrom | removeTime }}</td>
+                </tr>
+                <tr>
+                    <th>صالح حتى</th>
+                    <td>{{ existingVisit.validUntil | removeTime }}</td>
+                </tr>
+                <tr>
+                    <th>نوع التأشيرة</th>
+                    <td>{{ existingVisit.typeOfVisa }}</td>
+                </tr>
+                <tr>
+                    <th>مدة الإقامة</th>
+                    <td>{{ existingVisit.durationOfStay }}</td>
+                </tr>
+                <tr>
+                    <th>الجنسية</th>
+                    <td>{{ existingVisit.nationality }}</td>
+                </tr>
+                <tr>
+                    <th>مصدر التأشيرة</th>
+                    <td>{{ existingVisit.placeOfIssue }}</td>
+                </tr>
+                <tr>
+                    <th>عدد مرات الدخول</th>
+                    <td>{{ existingVisit.entryType }}</td>
+                </tr>
+                <tr>
+                    <th>الغرض</th>
+                    <td>{{ existingVisit.purpose }}</td>
+                </tr>
+                <tr>
+                    <th>الصورة</th>
+                    <td><img [src]="existingVisit.image" alt="Image" style="max-width: 200px; max-height: 200px;"></td>
+                </tr>
+                <tr>
+                    <th>صورة الباركود</th>
+                    <td><img [src]="existingVisit.barcodeImage" alt="Barcode Image"
+                            style="max-width: 200px; max-height: 200px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>عدد البحث</th>
+                    <td>{{ existingVisit.searchCount }}</td>
+                </tr>
+                <tr>
+                    <th>الجهاز</th>
+                    <td>
+                        <div class="device-info">
+                            <div><strong>نظام التشغيل:</strong> {{ deviceInfo.os || 'غير متوفر' }}</div>
+                            <div><strong>الجهاز:</strong> {{ deviceInfo.device || 'غير متوفر' }}</div>
+                            <div><strong>المتصفح:</strong> {{ deviceInfo.browser || 'غير متوفر' }}</div>
+                            <div><strong>التاريخ :</strong> {{ deviceInfo.date }}</div>
+                            <div><strong>الوقت:</strong> {{ deviceInfo.time || 'غير متوفر' }}</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div>
-        <label for="code">رقم السجل:</label>
-        <input type="text" id="code" name="code" [(ngModel)]="visit.code" required #code="ngModel">
-        <div *ngIf="code.invalid && code.touched" class="error">
-            <small *ngIf="code.errors?.['required']">رقم السجل مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="applicationNo">رقم الطلب:</label>
-        <input type="text" id="applicationNo" name="applicationNo" [(ngModel)]="visit.applicationNo" required
-            #applicationNo="ngModel">
-        <div *ngIf="applicationNo.invalid && applicationNo.touched" class="error">
-            <small *ngIf="applicationNo.errors?.['required']">رقم الطلب مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="birthDate">تاريخ الميلاد:</label>
-        <input type="date" id="birthDate" name="birthDate" [(ngModel)]="visit.birthDate" required #birthDate="ngModel">
-        <div *ngIf="birthDate.invalid && birthDate.touched" class="error">
-            <small *ngIf="birthDate.errors?.['required']">تاريخ الميلاد مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="name">الاسم:</label>
-        <input type="text" id="name" name="name" [(ngModel)]="visit.name" required #name="ngModel">
-        <div *ngIf="name.invalid && name.touched" class="error">
-            <small *ngIf="name.errors?.['required']">الاسم مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="validFrom">صالح اعتبارا من:</label>
-        <input type="date" id="validFrom" name="validFrom" [(ngModel)]="visit.validFrom" required #validFrom="ngModel">
-        <div *ngIf="validFrom.invalid && validFrom.touched" class="error">
-            <small *ngIf="validFrom.errors?.['required']">تاريخ الصلاحية من مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="validUntil">صالح حتى:</label>
-        <input type="date" id="validUntil" name="validUntil" [(ngModel)]="visit.validUntil" required
-            #validUntil="ngModel">
-        <div *ngIf="validUntil.invalid && validUntil.touched" class="error">
-            <small *ngIf="validUntil.errors?.['required']">تاريخ الصلاحية حتى مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="typeOfVisa">نوع التأشيرة:</label>
-        <input type="text" id="typeOfVisa" name="typeOfVisa" [(ngModel)]="visit.typeOfVisa" required
-            #typeOfVisa="ngModel">
-        <div *ngIf="typeOfVisa.invalid && typeOfVisa.touched" class="error">
-            <small *ngIf="typeOfVisa.errors?.['required']">نوع التأشيرة مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="durationOfStay">مدة الإقامة:</label>
-        <input type="text" id="durationOfStay" name="durationOfStay" [(ngModel)]="visit.durationOfStay" required
-            #durationOfStay="ngModel">
-        <div *ngIf="durationOfStay.invalid && durationOfStay.touched" class="error">
-            <small *ngIf="durationOfStay.errors?.['required']">مدة الإقامة مطلوبة</small>
-        </div>
-    </div>
-    <div>
-        <label for="placeOfIssue">مصدر التأشيرة:</label>
-        <input type="text" id="placeOfIssue" name="placeOfIssue" [(ngModel)]="visit.placeOfIssue" required
-            #placeOfIssue="ngModel">
-        <div *ngIf="placeOfIssue.invalid && placeOfIssue.touched" class="error">
-            <small *ngIf="placeOfIssue.errors?.['required']">مصدر التأشيرة مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="entryType">عدد مرات الدخول:</label>
-        <input type="text" id="entryType" name="entryType" [(ngModel)]="visit.entryType" required #entryType="ngModel">
-        <div *ngIf="entryType.invalid && entryType.touched" class="error">
-            <small *ngIf="entryType.errors?.['required']">عدد مرات الدخول مطلوب</small>
-        </div>
-    </div>
-    <div>
-        <label for="nationality">الجنسية:</label>
-        <input type="text" id="nationality" name="nationality" [(ngModel)]="visit.nationality" required
-            #nationality="ngModel">
-        <div *ngIf="nationality.invalid && nationality.touched" class="error">
-            <small *ngIf="nationality.errors?.['required']">الجنسية مطلوبة</small>
-        </div>
-    </div>
-    <div>
-        <label for="purpose">الغرص:</label>
-        <input type="text" id="purpose" name="purpose" [(ngModel)]="visit.purpose" required #purpose="ngModel">
-        <div *ngIf="purpose.invalid && purpose.touched" class="error">
-            <small *ngIf="purpose.errors?.['required']">الغرص مطلوبة</small>
-        </div>
-    </div>
-    <div>
-        <label for="image">الصورة:</label>
-        <input type="file" id="image" name="image" (change)="onFileSelected($event)" required>
-    </div>
-    <button type="submit" [disabled]="visitForm.invalid">إرسال</button>
-</form>
+</div>

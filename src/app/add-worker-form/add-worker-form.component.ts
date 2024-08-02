@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+// add-worker-form.component.ts
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Sponsor } from '../interfaces/sponsor';
 import { AddWorkerService } from './services/add-worker.service';
@@ -11,15 +12,15 @@ import { AddWorkerService } from './services/add-worker.service';
 export class AddWorkerFormComponent implements OnInit {
   sponsor!: Sponsor;
   workerForm: FormGroup;
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private AddWorkerService: AddWorkerService) {
+  constructor(private fb: FormBuilder, private addWorkerService: AddWorkerService) {
     this.workerForm = this.fb.group({
       workers: this.fb.array([])
     });
   }
 
   ngOnInit(): void {
-    // Initially, let's add one empty worker form
     this.sponsor = history.state.sponsor;
     this.addNewWorker();
   }
@@ -30,8 +31,8 @@ export class AddWorkerFormComponent implements OnInit {
 
   createWorkerForm(): FormGroup {
     return this.fb.group({
-      workerName: ['', Validators.required],
-      residencyNumber: ['', Validators.required],
+      workerName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      residencyNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       typeOfConsent: ['', Validators.required],
       nationality: ['', Validators.required],
       occupation: ['', Validators.required],
@@ -46,24 +47,21 @@ export class AddWorkerFormComponent implements OnInit {
   onSubmit() {
     if (this.workerForm.valid) {
       const workers = this.workerForm.value.workers;
-      console.log(workers)
-      this.AddWorkerService.pushNewWorkerToSponsor(this.sponsor.sponsorId, workers)
+      this.addWorkerService.pushNewWorkerToSponsor(this.sponsor.sponsorId, workers)
         .subscribe(
           (response) => {
             console.log('New worker added successfully:', response);
-            // Clear the form after successful submission
-            this.workerForms.clear()
+            this.workerForms.clear();
             this.workerForm.reset();
-            this.addNewWorker()
+            this.addNewWorker();
           },
           (error) => {
             console.error('Error adding new worker:', error);
-            // Handle error
+            this.errorMessage = 'حدث خطأ أثناء إضافة العامل الجديد. يرجى المحاولة مرة أخرى.';
           }
         );
     } else {
-      // Form is invalid, display error messages or handle accordingly
+      this.errorMessage = 'الرجاء ملء جميع الحقول المطلوبة بشكل صحيح.';
     }
-
   }
 }

@@ -1,109 +1,110 @@
-/* Style the table */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  /* Style the table headers */
-  th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  /* Style the table data */
-  td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Style the actions buttons */
-  button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Style the "Add Sponsor" button */
-  button[type="button"] {
-    margin-top: 10px;
-  }
-  
-  /* Style the input fields */
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  /* Style the submit button */
-  button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #45a049;
-  }
-  .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .pagination-btn {
-    padding: 8px 16px;
-    margin: 0 4px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .pagination-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .pagination-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .pagination-text {
-    margin: 0 10px;
-    font-weight: bold;
-  }
-  
-  .page-number-input {
-    width: 50px;
-    padding: 4px 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .page-number-input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
+  width: 100%;
+  margin-bottom: 20px;
+  direction: rtl;
+}
+
+thead th {
+  text-align: center;
+}
+
+tbody td {
+  text-align: right;
+  /* تعديل النص ليكون من اليمين */
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.btn {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+.ngb-tabset {
+  margin-top: 10px;
+}
+
+/* sponsor-list.component.css */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  /* لضمان أن تحتوي الصفحة على مساحة كافية */
+}
+
+.pagination-container {
+  flex: 1;
+  /* يملأ المساحة المتبقية */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 4px;
+}
+
+.pagination li {
+  display: inline;
+}
+
+.pagination li a {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.pagination li a:hover {
+  background-color: #ddd;
+}
+
+.pagination li.active a {
+  color: #fff;
+  background-color: #337ab7;
+  border: 1px solid #337ab7;
+  cursor: default;
+}

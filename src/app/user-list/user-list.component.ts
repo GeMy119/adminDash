@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Import Router for navigation
+import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-user-list',
@@ -10,32 +9,30 @@ import { NgxPaginationModule } from 'ngx-pagination';
 })
 export class UserListComponent implements OnInit {
   users: any[] = [];
-  pagedUsers: any[] = [];
   currentPage = 1;
-  itemsPerPage = 20;
+  itemsPerPage = 10;
+  totalItems = 0;
+  totalPages = 0;
+  pages: number[] = [];
 
   constructor(
     private userService: UserService,
-    private router: Router // Inject Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.loadUsers();
+    this.loadUsers(this.currentPage);
   }
-  goToSponsor(): void {
-    this.router.navigate(['/sponsor-list']);
-  }
-  loadUsers(): void {
-    this.userService.getUsers(this.currentPage, this.itemsPerPage).subscribe(
+
+  loadUsers(page: number): void {
+    this.userService.getUsers(page, this.itemsPerPage).subscribe(
       (response: any) => {
-        if (Array.isArray(response)) {
-          // If the response is an array, assign it directly to this.users
-          this.users = response;
-          console.log(response); // Log the response for debugging
-        } else if (response && Array.isArray(response.data)) {
-          // If the response is an object with a 'data' property containing an array
-          this.users = response.data;
-          console.log(response.data); // Log the array of users for debugging
+        if (response && response.data) {
+          this.users = response.data; // Update this according to your API response structure
+          this.totalItems = response.all; // Total number of items
+          this.totalItems = response.totalItems;
+          this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+          this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         } else {
           console.error('Invalid response format:', response);
         }
@@ -46,45 +43,30 @@ export class UserListComponent implements OnInit {
     );
   }
 
+  pageChanged(page: number): void {
+    this.currentPage = page;
+    this.loadUsers(this.currentPage);
+  }
 
-  editUser(user: any): void {
-    // Implement edit user logic
+  goToSponsor(): void {
+    this.router.navigate(['/sponsor-list']);
   }
 
   deleteUser(userId: any): void {
-    // Implement delete user logic
-    console.log(userId)
     this.userService.deleteUser(userId).subscribe((response) => {
       if (response) {
-        console.log(response)
-        this.loadUsers()
+        this.loadUsers(this.currentPage); // Reload users on the current page
       }
     }, (error) => {
-      console.log(error)
-
-    })
+      console.error('Error deleting user:', error);
+    });
   }
 
   goToAddUser(): void {
-    this.router.navigate(['/user-form']); // Navigate to user form component
+    this.router.navigate(['/user-form']);
   }
-  onUpdateButtonClick(user: {}): void {
+
+  onUpdateButtonClick(user: any): void {
     this.router.navigate(['/update-user-form'], { state: { user: user } });
   }
-
-  setPage(page: number): void {
-    // Calculate start and end indexes
-    const startIndex = (page - 1) * this.itemsPerPage;
-    const endIndex = Math.min(startIndex + this.itemsPerPage - 1, this.users.length - 1);
-
-    // Slice users array based on calculated indexes
-    this.pagedUsers = this.users.slice(startIndex, endIndex + 1);
-  }
-
-  pageChanged(event: any): void {
-    this.currentPage = event;
-    this.setPage(this.currentPage);
-  }
-
-
 }

@@ -1,39 +1,61 @@
-<form [formGroup]="workerForm" (ngSubmit)="onSubmit()">
+<!-- add-worker-form.component.html -->
+<h2 class="mt-5 text-center">نموذج إضافة العمال</h2>
+<!-- add-worker-form.component.html -->
+<form [formGroup]="workerForm" (ngSubmit)="onSubmit()" class="form-container">
     <div formArrayName="workers">
-        <div *ngFor="let workerGroup of workerForms.controls; let i = index">
-            <div [formGroupName]="i" class="worker-form">
-                <h3>Worker {{ i + 1 }}</h3>
-                <div>
+        <div *ngFor="let workerGroup of workerForms.controls; let i = index" class="worker-form">
+            <div [formGroupName]="i">
+                <h3>العامل {{ i + 1 }}</h3>
+                <div class="form-group">
                     <label for="workerName">اسم العامل:</label>
-                    <input type="text" id="workerName" formControlName="workerName" required>
-                    <!-- Display validation errors if needed -->
+                    <input type="text" id="workerName" formControlName="workerName">
+                    <div *ngIf="workerGroup.get('workerName')?.invalid && workerGroup.get('workerName')?.touched"
+                        class="error-message">
+                        <small *ngIf="workerGroup.get('workerName')?.errors?.['required']">اسم العامل مطلوب.</small>
+                    </div>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="residencyNumber">رقم الإقامة:</label>
-                    <input type="text" id="residencyNumber" formControlName="residencyNumber" required>
-                    <!-- Display validation errors if needed -->
+                    <input type="text" id="residencyNumber" formControlName="residencyNumber">
+                    <div *ngIf="workerGroup.get('residencyNumber')?.invalid && workerGroup.get('residencyNumber')?.touched"
+                        class="error-message">
+                        <small *ngIf="workerGroup.get('residencyNumber')?.errors?.['required']">رقم الإقامة
+                            مطلوب.</small>
+                    </div>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="typeOfConsent">نوع الموافقة:</label>
-                    <input type="text" id="typeOfConsent" formControlName="typeOfConsent" required>
-                    <!-- Display validation errors if needed -->
+                    <input type="text" id="typeOfConsent" formControlName="typeOfConsent">
+                    <div *ngIf="workerGroup.get('typeOfConsent')?.invalid && workerGroup.get('typeOfConsent')?.touched"
+                        class="error-message">
+                        <small *ngIf="workerGroup.get('typeOfConsent')?.errors?.['required']">نوع الموافقة
+                            مطلوب.</small>
+                    </div>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="nationality">الجنسية:</label>
-                    <input type="text" id="nationality" formControlName="nationality" required>
-                    <!-- Display validation errors if needed -->
+                    <input type="text" id="nationality" formControlName="nationality">
+                    <div *ngIf="workerGroup.get('nationality')?.invalid && workerGroup.get('nationality')?.touched"
+                        class="error-message">
+                        <small *ngIf="workerGroup.get('nationality')?.errors?.['required']">الجنسية مطلوبة.</small>
+                    </div>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="occupation">المهنة:</label>
-                    <input type="text" id="occupation" formControlName="occupation" required>
-                    <!-- Display validation errors if needed -->
+                    <input type="text" id="occupation" formControlName="occupation">
+                    <div *ngIf="workerGroup.get('occupation')?.invalid && workerGroup.get('occupation')?.touched"
+                        class="error-message">
+                        <small *ngIf="workerGroup.get('occupation')?.errors?.['required']">المهنة مطلوبة.</small>
+                    </div>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="type">الحالة:</label>
-                    <input type="text" id="type" formControlName="type" required>
-                    <!-- Display validation errors if needed -->
+                    <input type="text" id="type" formControlName="type">
+                    <div *ngIf="workerGroup.get('type')?.invalid && workerGroup.get('type')?.touched"
+                        class="error-message">
+                        <small *ngIf="workerGroup.get('type')?.errors?.['required']">الحالة مطلوبة.</small>
+                    </div>
                 </div>
-                <!-- Add other input fields for worker properties -->
             </div>
         </div>
     </div>

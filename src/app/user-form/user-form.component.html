@@ -1,64 +1,221 @@
-<h4 style="text-align: center;" *ngIf="isFound">المستخدم موجود بالفعل</h4>
-<form (ngSubmit)="submitForm()" #userForm="ngForm">
-  <div>
-    <label for="IdNumber">رقم الهوية:</label>
-    <input type="text" id="IdNumber" name="IdNumber" [(ngModel)]="user.IdNumber" required>
-  </div>
-  <div>
-    <label for="outgoingNumber">رقم الصادر:</label>
-    <input type="text" id="outgoingNumber" name="outgoingNumber" [(ngModel)]="user.outgoingNumber" required>
-  </div>
-  <div>
-    <label for="transactionNumber">رقم العملية:</label>
-    <input type="text" id="transactionNumber" name="transactionNumber" [(ngModel)]="user.transactionNumber" required>
-  </div>
-  <div>
-    <label for="userOccupation">مهنة المستخدم:</label>
-    <input type="text" id="userOccupation" name="userOccupation" [(ngModel)]="user.userOccupation" required>
-  </div>
-  <div>
-    <label for="userSerialNumber">الرقم المسلسل للمستخدم:</label>
-    <input type="text" id="userSerialNumber" name="userSerialNumber" [(ngModel)]="user.userSerialNumber" required>
-  </div>
-  <div>
-    <label for="name">الاسم:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
-  </div>
-  <div>
-    <label for="releaseDate">تاريخ الإصدار:</label>
-    <input type="date" id="releaseDate" name="releaseDate" [(ngModel)]="user.releaseDate" required>
-  </div>
-  <div>
-    <label for="image">الصورة:</label>
-    <input type="file" id="image" name="image" (change)="onFileSelected($event)">
-  </div>
-  <div>
-    <label for="dateBoking">تاريخ الحجز:</label>
-    <input type="date" id="dateBoking" name="dateBoking" [(ngModel)]="user.dateBoking" required>
-  </div>
-  <div>
-    <label for="WifeSerialNumber">الرقم المسلسل للزوجة:</label>
-    <input type="text" id="WifeSerialNumber" name="WifeSerialNumber" [(ngModel)]="user.WifeSerialNumber" required>
-  </div>
-  <div>
-    <label for="wifeName">اسم الزوجة:</label>
-    <input type="text" id="wifeName" name="wifeName" [(ngModel)]="user.wifeName" required>
-  </div>
-  <div>
-    <label for="type">النوع:</label>
-    <input type="text" id="type" name="type" [(ngModel)]="user.type" required>
-  </div>
-  <div>
-    <label for="condition">الحالة:</label>
-    <input type="text" id="condition" name="condition" [(ngModel)]="user.condition" required>
-  </div>
-  <div>
-    <label for="nationality">الجنسية:</label>
-    <input type="text" id="nationality" name="nationality" [(ngModel)]="user.nationality" required>
-  </div>
-  <div>
-    <label for="occupationCategory">فئة الوظيفة:</label>
-    <input type="text" id="occupationCategory" name="occupationCategory" [(ngModel)]="user.occupationCategory" required>
-  </div>
-  <button type="submit" [disabled]="userForm.invalid">إرسال</button>
-</form>
+<div *ngIf="!isFound" class="container">
+  <form (ngSubmit)="submitForm()" #userForm="ngForm">
+    <h2 class="text-center">نموذج اضافة مستخدم</h2>
+    <div>
+      <label for="IdNumber">رقم الهوية:</label>
+      <input type="text" id="IdNumber" name="IdNumber" [(ngModel)]="user.IdNumber" required #IdNumber="ngModel">
+      <div *ngIf="IdNumber.invalid && IdNumber.touched" class="invalid-feedback">
+        الرقم المطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="outgoingNumber">رقم الصادر:</label>
+      <input type="text" id="outgoingNumber" name="outgoingNumber" [(ngModel)]="user.outgoingNumber" required
+        #outgoingNumber="ngModel">
+      <div *ngIf="outgoingNumber.invalid && outgoingNumber.touched" class="invalid-feedback">
+        الرقم المطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="transactionNumber">رقم المعاملة:</label>
+      <input type="text" id="transactionNumber" name="transactionNumber" [(ngModel)]="user.transactionNumber" required
+        #transactionNumber="ngModel">
+      <div *ngIf="transactionNumber.invalid && transactionNumber.touched" class="invalid-feedback">
+        الرقم المطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="userOccupation">مهنة المستخدم:</label>
+      <input type="text" id="userOccupation" name="userOccupation" [(ngModel)]="user.userOccupation" required
+        #userOccupation="ngModel">
+      <div *ngIf="userOccupation.invalid && userOccupation.touched" class="invalid-feedback">
+        المهنة مطلوبة.
+      </div>
+    </div>
+    <div>
+      <label for="userSerialNumber">الرقم المسلسل للمستخدم:</label>
+      <input type="text" id="userSerialNumber" name="userSerialNumber" [(ngModel)]="user.userSerialNumber" required
+        #userSerialNumber="ngModel">
+      <div *ngIf="userSerialNumber.invalid && userSerialNumber.touched" class="invalid-feedback">
+        الرقم المسلسل مطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="name">الاسم:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="user.name" required #name="ngModel">
+      <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+        الاسم مطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="releaseDate">تاريخ الإصدار:</label>
+      <input type="date" id="releaseDate" name="releaseDate" [(ngModel)]="user.releaseDate" required
+        #releaseDate="ngModel">
+      <div *ngIf="releaseDate.invalid && releaseDate.touched" class="invalid-feedback">
+        تاريخ الإصدار مطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="image">الصورة:</label>
+      <input type="file" id="image" name="image" (change)="onFileSelected($event)">
+    </div>
+    <div>
+      <label for="dateBoking">تاريخ الحجز:</label>
+      <input type="date" id="dateBoking" name="dateBoking" [(ngModel)]="user.dateBoking" required #dateBoking="ngModel">
+      <div *ngIf="dateBoking.invalid && dateBoking.touched" class="invalid-feedback">
+        تاريخ الحجز مطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="WifeSerialNumber">الرقم المسلسل للزوجة:</label>
+      <input type="text" id="WifeSerialNumber" name="WifeSerialNumber" [(ngModel)]="user.WifeSerialNumber" required
+        #WifeSerialNumber="ngModel">
+      <div *ngIf="WifeSerialNumber.invalid && WifeSerialNumber.touched" class="invalid-feedback">
+        الرقم المسلسل للزوجة مطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="wifeName">اسم الزوجة:</label>
+      <input type="text" id="wifeName" name="wifeName" [(ngModel)]="user.wifeName" required #wifeName="ngModel">
+      <div *ngIf="wifeName.invalid && wifeName.touched" class="invalid-feedback">
+        اسم الزوجة مطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="type">النوع:</label>
+      <input type="text" id="type" name="type" [(ngModel)]="user.type" required #type="ngModel">
+      <div *ngIf="type.invalid && type.touched" class="invalid-feedback">
+        النوع مطلوب.
+      </div>
+    </div>
+    <div>
+      <label for="condition">الحالة:</label>
+      <input type="text" id="condition" name="condition" [(ngModel)]="user.condition" required #condition="ngModel">
+      <div *ngIf="condition.invalid && condition.touched" class="invalid-feedback">
+        الحالة مطلوبة.
+      </div>
+    </div>
+    <div>
+      <label for="nationality">الجنسية:</label>
+      <input type="text" id="nationality" name="nationality" [(ngModel)]="user.nationality" required
+        #nationality="ngModel">
+      <div *ngIf="nationality.invalid && nationality.touched" class="invalid-feedback">
+        الجنسية مطلوبة.
+      </div>
+    </div>
+    <div>
+      <label for="occupationCategory">فئة الوظيفة:</label>
+      <input type="text" id="occupationCategory" name="occupationCategory" [(ngModel)]="user.occupationCategory"
+        required #occupationCategory="ngModel">
+      <div *ngIf="occupationCategory.invalid && occupationCategory.touched" class="invalid-feedback">
+        فئة الوظيفة مطلوبة.
+      </div>
+    </div>
+    <button type="submit" [disabled]="userForm.invalid">إرسال</button>
+  </form>
+</div>
+
+<div *ngIf="isFound && existingUser">
+  <h4 style="text-align: center;">المستخدم موجود بالفعل</h4>
+  <table class="user-details-table">
+    <tbody>
+      <tr>
+        <td><strong>رقم الهوية:</strong></td>
+        <td>{{ existingUser.IdNumber }}</td>
+      </tr>
+      <tr>
+        <td><strong>رقم الصادر:</strong></td>
+        <td>{{ existingUser.outgoingNumber }}</td>
+      </tr>
+      <tr>
+        <td><strong>رقم المعاملة:</strong></td>
+        <td>{{ existingUser.transactionNumber }}</td>
+      </tr>
+      <tr>
+        <td><strong>مهنة المستخدم:</strong></td>
+        <td>{{ existingUser.userOccupation }}</td>
+      </tr>
+      <tr>
+        <td><strong>الرقم المسلسل للمستخدم:</strong></td>
+        <td>{{ existingUser.userSerialNumber }}</td>
+      </tr>
+      <tr>
+        <td><strong>الاسم:</strong></td>
+        <td>{{ existingUser.name }}</td>
+      </tr>
+      <tr>
+        <td><strong>تاريخ الإصدار:</strong></td>
+        <td>{{ existingUser.releaseDate | removeTime }}</td>
+      </tr>
+      <tr>
+        <td><strong>تاريخ الحجز:</strong></td>
+        <td>{{ existingUser.dateBoking | removeTime }}</td>
+      </tr>
+      <tr>
+        <td><strong>الرقم المسلسل للزوجة:</strong></td>
+        <td>{{ existingUser.WifeSerialNumber }}</td>
+      </tr>
+      <tr>
+        <td><strong>اسم الزوجة:</strong></td>
+        <td>{{ existingUser.wifeName }}</td>
+      </tr>
+      <tr>
+        <td><strong>النوع:</strong></td>
+        <td>{{ existingUser.type }}</td>
+      </tr>
+      <tr>
+        <td><strong>الحالة:</strong></td>
+        <td>{{ existingUser.condition }}</td>
+      </tr>
+      <tr>
+        <td><strong>الجنسية:</strong></td>
+        <td>{{ existingUser.nationality }}</td>
+      </tr>
+      <tr>
+        <td><strong>فئة الوظيفة:</strong></td>
+        <td>{{ existingUser.occupationCategory }}</td>
+      </tr>
+      <tr>
+        <td><strong>تاريخ الإنشاء:</strong></td>
+        <td>{{ existingUser.createdAt | removeTime }}</td>
+      </tr>
+      <tr>
+        <td><strong>عدد مرات البحث:</strong></td>
+        <td>{{ existingUser.searchCount }}</td>
+      </tr>
+      <tr>
+        <td><strong>عدد مرات البحث عن تصريح الزواج:</strong></td>
+        <td>{{ existingUser.searchCountMerage }}</td>
+      </tr>
+      <tr>
+        <td><strong>اخر جهاز تم البحث منه عن تصريح الزواج:</strong></td>
+        <td>
+          <div class="device-info">
+            <div><strong>نظام التشغيل:</strong> {{ marriagePermitDeviceInfo.os || 'غير متوفر' }}</div>
+            <div><strong>الجهاز:</strong> {{ marriagePermitDeviceInfo.device || 'غير متوفر' }}</div>
+            <div><strong>المتصفح:</strong> {{ marriagePermitDeviceInfo.browser || 'غير متوفر' }}</div>
+            <div><strong>التاريخ :</strong> {{ marriagePermitDeviceInfo.date }}</div>
+            <div><strong>الوقت:</strong> {{ marriagePermitDeviceInfo.time || 'غير متوفر' }}</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>عدد مرات البحث عن المعاملات:</strong></td>
+        <td>{{ existingUser.searchCountTransaction }}</td>
+      </tr>
+
+      <tr>
+        <td><strong>اخر جهاز تم البحث منه عن المعاملات:</strong></td>
+        <td>
+          <div class="device-info">
+            <div><strong>نظام التشغيل:</strong> {{ transactionSearchDeviceInfo.os || 'غير متوفر' }}</div>
+            <div><strong>الجهاز:</strong> {{ transactionSearchDeviceInfo.device || 'غير متوفر' }}</div>
+            <div><strong>المتصفح:</strong> {{ transactionSearchDeviceInfo.browser || 'غير متوفر' }}</div>
+            <div><strong>التاريخ :</strong> {{ transactionSearchDeviceInfo.date }}</div>
+            <div><strong>الوقت:</strong> {{ transactionSearchDeviceInfo.time || 'غير متوفر' }}</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

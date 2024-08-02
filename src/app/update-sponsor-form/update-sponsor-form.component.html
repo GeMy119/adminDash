@@ -1,24 +1,50 @@
-<form [formGroup]="sponsorForm" (ngSubmit)="onSubmit()">
-    <div>
+<form [formGroup]="sponsorForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
         <label for="sponsorId">رقم هوية الكفيل:</label>
         <input type="text" id="sponsorId" formControlName="sponsorId">
-        <!-- Display validation errors if needed -->
+        <div *ngIf="sponsorForm.get('sponsorId')?.invalid && sponsorForm.get('sponsorId')?.touched">
+            <small *ngIf="sponsorForm.get('sponsorId')?.errors?.['required']">رقم هوية الكفيل مطلوب.</small>
+            <small *ngIf="sponsorForm.get('sponsorId')?.errors?.['minlength']">رقم هوية الكفيل يجب أن يكون على الأقل 5
+                أحرف.</small>
+            <small *ngIf="sponsorForm.get('sponsorId')?.errors?.['maxlength']">رقم هوية الكفيل يجب أن لا يتجاوز 15
+                حرفاً.</small>
+        </div>
     </div>
-    <div>
+
+    <div class="form-group">
         <label for="sourceNumber">رقم المصدر:</label>
         <input type="text" id="sourceNumber" formControlName="sourceNumber">
-        <!-- Display validation errors if needed -->
+        <div *ngIf="sponsorForm.get('sourceNumber')?.invalid && sponsorForm.get('sourceNumber')?.touched">
+            <small *ngIf="sponsorForm.get('sourceNumber')?.errors?.['required']">رقم المصدر مطلوب.</small>
+            <small *ngIf="sponsorForm.get('sourceNumber')?.errors?.['pattern']">رقم المصدر يجب أن يتكون من أرقام
+                فقط.</small>
+        </div>
     </div>
-    <div>
+
+    <div class="form-group">
         <label for="name">اسم الكفيل:</label>
         <input type="text" id="name" formControlName="name">
-        <!-- Display validation errors if needed -->
+        <div *ngIf="sponsorForm.get('name')?.invalid && sponsorForm.get('name')?.touched">
+            <small *ngIf="sponsorForm.get('name')?.errors?.['required']">اسم الكفيل مطلوب.</small>
+            <small *ngIf="sponsorForm.get('name')?.errors?.['minlength']">اسم الكفيل يجب أن يكون على الأقل 3
+                أحرف.</small>
+            <small *ngIf="sponsorForm.get('name')?.errors?.['maxlength']">اسم الكفيل يجب أن لا يتجاوز 50 حرفاً.</small>
+        </div>
     </div>
-    <div>
+
+    <div class="form-group">
         <label for="dateOfLastModification">تاريخ آخر تعديل:</label>
         <input type="date" id="dateOfLastModification" formControlName="dateOfLastModification">
-        <!-- Display validation errors if needed -->
+        <div
+            *ngIf="sponsorForm.get('dateOfLastModification')?.invalid && sponsorForm.get('dateOfLastModification')?.touched">
+            <small *ngIf="sponsorForm.get('dateOfLastModification')?.errors?.['required']">تاريخ آخر تعديل
+                مطلوب.</small>
+        </div>
     </div>
 
     <button type="submit">تحديث الكفيل</button>
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
 </form>

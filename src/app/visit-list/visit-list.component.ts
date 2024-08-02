@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddVisitService } from '../add-visit-form/services/add-visit.service';
-import { visit } from '../interfaces/sponsor';
+import { Visit } from '../interfaces/sponsor';
 
 @Component({
   selector: 'app-visit-list',
@@ -10,9 +10,12 @@ import { visit } from '../interfaces/sponsor';
   styleUrls: ['./visit-list.component.css']
 })
 export class VisitListComponent implements OnInit {
-  visits: visit[] = [];
-  currentPage: number = 1;
-  pageSize: number = 10;
+  visits: Visit[] = [];
+  currentPage = 1;
+  itemsPerPage = 10;
+  totalItems = 0;
+  totalPages = 0;
+  pages: number[] = [];
 
   constructor(private AddVisitService: AddVisitService, private router: Router) { }
 
@@ -21,10 +24,14 @@ export class VisitListComponent implements OnInit {
   }
 
   loadVisits(): void {
-    this.AddVisitService.getVisits(this.currentPage, this.pageSize).subscribe(
+    this.AddVisitService.getVisits(this.currentPage, this.itemsPerPage).subscribe(
       (response: any) => {
+        this.totalItems = response.all; // Total number of items
+        this.totalItems = response.totalItems;
         if (Array.isArray(response)) {
           this.visits = response;
+          this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+          this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
         } else if (response && Array.isArray(response.data)) {
           this.visits = response.data;
         } else {

@@ -11,6 +11,7 @@ import { AddVisitService } from './services/add-visit.service';
 export class AddVisitFormComponent implements OnInit {
   visit: any = {}; // Define a visit object to store form data
   isFound: boolean = false;
+  existingVisit: any = null;
   formData: FormData = new FormData();
   selectedImageFile: File | null = null; // Initialize selectedImageFile to null
   constructor(private AddVisitService: AddVisitService, private router: Router) { }
@@ -51,6 +52,8 @@ export class AddVisitFormComponent implements OnInit {
     this.AddVisitService.addVisit(this.formData).pipe(
       catchError(error => {
         if (error.status === 409) {
+          this.existingVisit = error.error.existingVisit;
+          console.log(this.existingVisit)
           this.isFound = true;
           console.error('Error adding visit:', error);
         }
@@ -63,6 +66,29 @@ export class AddVisitFormComponent implements OnInit {
       // Optionally, navigate to the visit list or another relevant component
     });
   }
+  get deviceInfo(): any {
+    try {
+      const parsedDeviceInfo = JSON.parse(this.existingVisit.device);
+      const datetime = new Date(parsedDeviceInfo.datetime);
+
+      return {
+        os: parsedDeviceInfo.os || 'غير متوفر',
+        device: parsedDeviceInfo.device || 'غير متوفر',
+        browser: parsedDeviceInfo.browser || 'غير متوفر',
+        date: datetime.toLocaleDateString('ar-EG') || 'غير متوفر',
+        time: datetime.toLocaleTimeString('ar-EG') || 'غير متوفر'
+      };
+    } catch (error) {
+      return {
+        os: 'غير متوفر',
+        device: 'غير متوفر',
+        browser: 'غير متوفر',
+        date: 'غير متوفر',
+        time: 'غير متوفر'
+      };
+    }
+  }
+
 
   // Function to clear the form
   clearForm(): void {

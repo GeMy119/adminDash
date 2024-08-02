@@ -2128,6 +2128,13 @@
     "@material/theme" "15.0.0-canary.7f224ddd4.0"
     tslib "^2.1.0"
 
+"@ng-bootstrap/ng-bootstrap@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-11.0.0.tgz#16855620bff7ab7b965d4f49907c44b0f5bd5020"
+  integrity sha512-qDnB0+jbpQ4wjXpM4NPRAtwmgTDUCjGavoeRDZHOvFfYvx/MBf1RTjZEqTJ1Yqq1pKP4BWpzxCgVTunfnpmsjA==
+  dependencies:
+    tslib "^2.3.0"
+
 "@ngtools/webpack@14.2.13":
   version "14.2.13"
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-14.2.13.tgz"
@@ -2656,6 +2663,11 @@ ajv@^6.12.4, ajv@^6.12.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+angular2-daterangepicker@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/angular2-daterangepicker/-/angular2-daterangepicker-0.0.5.tgz#b1b73649a6d37aed9b2e4fc494b8e483efd45bda"
+  integrity sha512-rrjPucYK/uGlPYOIIXHbCX+AyDGz15SOA+RBjVxJBDBY278ULGU1IQ0RVWZuyNFdUsre9iCKfsVm8LMaXdURlw==
 
 ansi-colors@4.1.3:
   version "4.1.3"
@@ -5055,16 +5067,21 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment-hijri@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmjs.org/moment-hijri/-/moment-hijri-2.1.2.tgz"
-  integrity sha512-p5ZOA1UzBHAAXiePh37XRjjwuyH78+1ShYZ7R6jogxketewG7kTCUjUmcP9c4Qsx8D8cqxwUWrESjtgdT6tNoA==
+moment-hijri@^2.30.0:
+  version "2.30.0"
+  resolved "https://registry.yarnpkg.com/moment-hijri/-/moment-hijri-2.30.0.tgz#d2a09176b6056be902cd04fa689117ef1b45ad75"
+  integrity sha512-A3Ss8ASkhkT160laK9gXv+Yle0jA6eg92o8Uw78mU3OlUyaWjW2ntMd04kutawFb01KR0GIeJ8lqgIABGbWj7g==
   dependencies:
-    moment "^2.24.0"
+    moment "^2.30.1"
 
-moment@*, moment@^2.24.0, moment@^2.30.1:
+moment@*:
   version "2.30.1"
   resolved "https://registry.npmjs.org/moment/-/moment-2.30.1.tgz"
+  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
+
+moment@^2.30.1:
+  version "2.30.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
   integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
 
 ms@2.0.0:
@@ -5124,6 +5141,13 @@ ngx-pagination@^6.0.3:
   integrity sha512-lONjTQ7hFPh1SyhwDrRd5ZwM4NMGQ7bNR6vLrs6mrU0Z8Q1zCcWbf/pvyp4DOlGyd9uyZxRy2wUsSZLeIPjbAw==
   dependencies:
     tslib "^2.3.0"
+
+ngx-persian-datepicker@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/ngx-persian-datepicker/-/ngx-persian-datepicker-0.1.3.tgz#c97c6227a46980ff5a177f5e19588a166ea5fa9f"
+  integrity sha512-VXGOYA/Cnc3HeJNc52gnVltc6Om4Ak9rWD7lt58GGgqfmuSDkaGSEA8hOZABjBbVVczlQRP6gIiYwDbACfgMUw==
+  dependencies:
+    tslib "^1.9.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"

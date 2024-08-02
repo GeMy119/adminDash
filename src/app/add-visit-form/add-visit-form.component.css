@@ -1,36 +1,108 @@
-form {
-    max-width: 500px;
+/* styles.css or the specific CSS file */
+
+.form-container {
+    direction: rtl;
+    text-align: right;
+    margin: 0 auto;
+    max-width: 600px;
+    /* Adjust this to fit the desired width */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container .form-group {
+    margin-bottom: 15px;
+}
+
+.form-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container .form-control-file {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.form-container .error {
+    color: #d9534f;
+    margin-top: 5px;
+}
+
+.form-container .error small {
+    display: block;
+}
+
+.form-container .btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.form-container .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Table styles */
+.table-container {
+    direction: rtl;
+    text-align: right;
+    margin: 20px auto;
+    max-width: 600px;
+    /* Same width as form for consistency */
+}
+
+.table-container .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-container .table th,
+.table-container .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: right;
+}
+
+.table-container .table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table-container .table img {
+    max-width: 150px;
+    max-height: 150px;
+    display: block;
     margin: 0 auto;
 }
 
-form div {
-    margin-bottom: 10px;
+.device-info {
+    font-size: 14px;
 }
 
-form label {
-    display: inline-block;
-    width: 150px;
+
+.device-info {
+    display: flex;
+    flex-direction: column;
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="date"],
-form input[type="file"] {
-    width: calc(100% - 160px);
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-form button[type="submit"]:hover {
-    background-color: #45a049;
+.device-info div {
+    margin-bottom: 5px;
 }

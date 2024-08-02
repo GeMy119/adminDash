@@ -1,63 +1,67 @@
-<!-- sponsor.component.html -->
-<h2>قائمة الكفلاء</h2>
-<table>
-  <thead>
-    <tr>
-      <th>رقم الهوية</th>
-      <th>رقم المصدر</th>
-      <th>اسم الكفيل</th>
-      <th>تاريخ آخر تعديل</th>
-      <th>بيانات العمال</th>
-      <th>إجراءات</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let sponsor of sponsors">
-      <td>{{ sponsor.sponsorId }}</td>
-      <td>{{ sponsor.sourceNumber }}</td>
-      <td>{{ sponsor.name }}</td>
-      <td>{{ sponsor.dateOfLastModification | removeTime }}</td>
-      <td>
-        <ul>
-          <li *ngFor="let worker of sponsor.workers let i=index">
-            <div *ngIf="!worker.editMode">
-              <strong>اسم العامل:</strong> {{ worker.workerName }}<br>
-              <strong>رقم الإقامة:</strong> {{ worker.residencyNumber }}<br>
-              <strong>نوع العمل:</strong> {{ worker.occupation }}<br>
-              <strong>الجنسية:</strong> {{ worker.nationality }}<br>
-              <strong>الحالة:</strong> {{ worker.occupation }}<br>
-              <strong>نوع الموافقة</strong> {{ worker.typeOfConsent }}<br>
-              <button (click)="deleteWorker(sponsor._id,i,worker)" class="delete-worker-button">حذف العامل</button>
-              <button (click)="editWorker(worker)" class="update-worker-button">تعديل العامل</button>
-              <!-- Add other worker properties as needed -->
-            </div>
-            <div *ngIf="worker.editMode">
-              <!-- Input fields for editing -->
-              <input [(ngModel)]="worker.workerName" placeholder="Worker Name"><br>
-              <input [(ngModel)]="worker.residencyNumber" placeholder="Residency Number"><br>
-              <input [(ngModel)]="worker.nationality" placeholder="Residency Number"><br>
-              <input [(ngModel)]="worker.type" placeholder="Residency Number"><br>
-              <input [(ngModel)]="worker.occupation" placeholder="Residency Number"><br>
-              <input [(ngModel)]="worker.typeOfConsent" placeholder="Residency Number"><br>
-              <!-- Add other input fields for worker properties here -->
+<div class="container">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>رقم الهوية</th>
+        <th>رقم المصدر</th>
+        <th>اسم الكفيل</th>
+        <th>تاريخ آخر تعديل</th>
+        <th>بيانات العمال</th>
+        <th>إجراءات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sponsor of sponsors">
+        <td>{{ sponsor.sponsorId }}</td>
+        <td>{{ sponsor.sourceNumber }}</td>
+        <td>{{ sponsor.name }}</td>
+        <td>{{ sponsor.dateOfLastModification | removeTime }}</td>
+        <td>
+          <ngb-accordion>
+            <ngb-panel *ngFor="let worker of sponsor.workers; let i = index" title="{{ worker.workerName }}">
+              <ng-template ngbPanelContent>
+                <div>
+                  <strong>رقم الإقامة:</strong> {{ worker.residencyNumber }}<br>
+                  <strong>نوع العمل:</strong> {{ worker.occupation }}<br>
+                  <strong>الجنسية:</strong> {{ worker.nationality }}<br>
+                  <strong>الحالة:</strong> {{ worker.type }}<br>
+                  <strong>نوع الموافقة:</strong> {{ worker.typeOfConsent }}<br>
+                  <button (click)="deleteWorker(sponsor._id, i, worker)" class="btn btn-danger btn-sm">حذف
+                    العامل</button>
+                  <button (click)="editWorker(worker)" class="btn btn-primary btn-sm">تعديل العامل</button>
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </td>
+        <td>
+          <button (click)="deleteSponsor(sponsor._id)" class="btn btn-danger">حذف الكفيل</button>
+          <button (click)="goToUpdateSponsor(sponsor)" class="btn btn-primary">تحديث الكفيل</button>
+          <button (click)="addWorker(sponsor)" class="btn btn-secondary">إضافة عامل</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-              <!-- Save button -->
-              <button (click)="saveWorker(sponsor._id,i,worker)">Save</button>
-            </div>
-          </li>
-        </ul>
-      </td>
-      <td>
-        <button (click)="deleteSponsor(sponsor._id)" class="delete-button">حذف الكفيل</button>
-        <button (click)="goToUpdateSponsor(sponsor)" class="update-button">تحديث الكفيل</button>
-        <button (click)="addWorker(sponsor)" class="add-worker-button">إضافة عامل</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <button (click)="goToAddSponsor()" class="btn btn-secondary">إضافة كفيل</button>
 
-<button (click)="goToAddSponsor()" class="add-worker-button">إضافة كفيل</button>
-
-<div class="pagination-container">
-  <pagination-controls (pageChange)="pageChanged($event)" [autoHide]="true"></pagination-controls>
+  <div class="pagination-container">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="pageChanged(currentPage - 1)">
+            <span aria-hidden="true">السابق</span>
+          </a>
+        </li>
+        <li *ngFor="let page of pages" class="page-item" [class.active]="page === currentPage">
+          <a class="page-link" href="javascript:void(0)" (click)="pageChanged(page)">{{ page }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="pageChanged(currentPage + 1)">
+            <span aria-hidden="true">التالي</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>

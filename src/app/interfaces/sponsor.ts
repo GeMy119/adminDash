@@ -1,11 +1,4 @@
-export interface Sponsor {
-    _id: string;
-    sponsorId: string;
-    sourceNumber: string;
-    name: string;
-    dateOfLastModification: string;
-    workers: Worker[];
-}
+
 
 export interface Worker {
     workerName: string;
@@ -16,23 +9,60 @@ export interface Worker {
     type: string;
     editMode?: boolean;
 }
-export interface visit {
+
+export interface Sponsor {
     _id: string
-    visaNo: string
-    passportNo: string, // رقم جواز السفر
-    code: string, //رقم السجل   
-    applicationNo: string, // رقم الطلب
-    name: string,
-    birthDate: Date, // تاريخ الميلاد
-    validFrom: Date, // صالحه اعتبارا من 
-    validUntil: Date, // صالحه لغايه
-    image: string,
-    typeOfVisa: string, // نوع التأشيره
-    durationOfStay: string, // مده الاقامه
-    nationality: string, // الجنسيه  
-    placeOfIssue: string, // مصدر التأشيره
-    entryType: string, // عدد مرات الدخول
-    purpose: string, //  الغرض
-    barcodeImage: string,
+    sponsorId: string;
+    sourceNumber: string;
+    name: string;
+    dateOfLastModification: string;
+    workers: Worker[];
+    searchCount: number;
+    device: string;
+}
+
+export interface User {
+    _id: string
+    IdNumber: string;
+    outgoingNumber: string;
+    transactionNumber: string;
+    userOccupation: string;
+    userSerialNumber: string;
+    name: string;
+    releaseDate: Date;
+    image: string;
+    dateBoking: Date;
+    WifeSerialNumber: string;
+    wifeName: string;
+    type: string;
+    condition: string;
+    nationality: string;
+    occupationCategory: string;
+    searchCountMerage: number;
+    searchCountTransaction: number;
+    deviceMerageSearch: string;
+    deviceTransactionSearch: string;
+}
+
+export interface Visit {
+    _id: string
+    visaNo: string;
+    passportNo: string;
+    code: string;
+    applicationNo: string;
+    name: string;
+    birthDate: Date;
+    validFrom: Date;
+    validUntil: Date;
+    image: string;
+    typeOfVisa: string;
+    durationOfStay: string;
+    nationality: string;
+    placeOfIssue: string;
+    entryType: string;
+    purpose: string;
+    barcodeImage: string;
+    searchCount: number;
+    device: string;
 }
 
