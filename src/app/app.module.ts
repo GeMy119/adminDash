@@ -15,7 +15,6 @@ import { SponsorFormService } from './sponsor-form/services/sponsor-form.service
 import { UpdateSponsorFormComponent } from './update-sponsor-form/update-sponsor-form.component';
 import { AddWorkerFormComponent } from './add-worker-form/add-worker-form.component';
 import { HeaderComponent } from './header/header.component'; // تأكد من مسار الاستيراد الصحيح
-import { NgxPaginationModule } from 'ngx-pagination';
 import { AddVisitFormComponent } from './add-visit-form/add-visit-form.component';
 import { VisitListComponent } from './visit-list/visit-list.component';
 import { UpdateUserFormComponent } from './update-user-form/update-user-form.component'; // إضافة استيراد UpdateUserFormComponent
@@ -45,7 +44,6 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
     NgbModule,
     NgbAccordionModule,
 
