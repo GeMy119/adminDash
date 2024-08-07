@@ -30,10 +30,10 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SponsorFormComponent,
     AdminLoginComponent,
     RemoveTimePipe,
-    UpdateUserFormComponent, // تأكد من إضافة UpdateUserFormComponent
+    UpdateUserFormComponent,
     UpdateSponsorFormComponent,
     AddWorkerFormComponent,
-    HeaderComponent, // تأكد من إضافة HeaderComponent
+    HeaderComponent,
     AddVisitFormComponent,
     VisitListComponent,
 
@@ -46,8 +46,6 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbModule,
     NgbAccordionModule,
-
-
   ],
   providers: [
     SponsorService,

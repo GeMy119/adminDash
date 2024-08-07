@@ -28,6 +28,7 @@ export class SponsorListComponent implements OnInit {
       (response: any) => {
         if (Array.isArray(response.data)) {
           this.sponsors = response.data;
+          console.log(this.sponsors)
           this.totalItems = response.totalItems;
           this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
           this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
