@@ -15,7 +15,7 @@
         <td>{{ sponsor.sponsorId }}</td>
         <td>{{ sponsor.sourceNumber }}</td>
         <td>{{ sponsor.name }}</td>
-        <td>{{ sponsor.dateOfLastModification | removeTime }}</td>
+        <td>{{ sponsor.dateOfLastModification}}</td>
         <td>
           <ngb-accordion>
             <ngb-panel *ngFor="let worker of sponsor.workers; let i = index" title="{{ worker.workerName }}">

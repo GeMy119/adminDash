@@ -29,9 +29,9 @@ export interface User {
     userOccupation: string;
     userSerialNumber: string;
     name: string;
-    releaseDate: Date;
+    releaseDate: string;
     image: string;
-    dateBoking: Date;
+    dateBoking: string;
     WifeSerialNumber: string;
     wifeName: string;
     type: string;
@@ -51,9 +51,9 @@ export interface Visit {
     code: string;
     applicationNo: string;
     name: string;
-    birthDate: Date;
-    validFrom: Date;
-    validUntil: Date;
+    birthDate: string;
+    validFrom: string;
+    validUntil: string;
     image: string;
     typeOfVisa: string;
     durationOfStay: string;

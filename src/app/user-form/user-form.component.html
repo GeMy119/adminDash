@@ -49,8 +49,8 @@
     </div>
     <div>
       <label for="releaseDate">تاريخ الإصدار:</label>
-      <input type="date" id="releaseDate" name="releaseDate" [(ngModel)]="user.releaseDate" required
-        #releaseDate="ngModel">
+      <input type="text" placeholder="dd/mm/yyy" id="releaseDate" name="releaseDate" [(ngModel)]="user.releaseDate"
+        required #releaseDate="ngModel">
       <div *ngIf="releaseDate.invalid && releaseDate.touched" class="invalid-feedback">
         تاريخ الإصدار مطلوب.
       </div>
@@ -61,7 +61,8 @@
     </div>
     <div>
       <label for="dateBoking">تاريخ الحجز:</label>
-      <input type="date" id="dateBoking" name="dateBoking" [(ngModel)]="user.dateBoking" required #dateBoking="ngModel">
+      <input type="text" placeholder="dd/mm/yyy" id="dateBoking" name="dateBoking" [(ngModel)]="user.dateBoking"
+        required #dateBoking="ngModel">
       <div *ngIf="dateBoking.invalid && dateBoking.touched" class="invalid-feedback">
         تاريخ الحجز مطلوب.
       </div>
@@ -145,11 +146,11 @@
       </tr>
       <tr>
         <td><strong>تاريخ الإصدار:</strong></td>
-        <td>{{ existingUser.releaseDate | removeTime }}</td>
+        <td>{{ existingUser.releaseDate }}</td>
       </tr>
       <tr>
         <td><strong>تاريخ الحجز:</strong></td>
-        <td>{{ existingUser.dateBoking | removeTime }}</td>
+        <td>{{ existingUser.dateBoking }}</td>
       </tr>
       <tr>
         <td><strong>الرقم المسلسل للزوجة:</strong></td>
@@ -177,7 +178,7 @@
       </tr>
       <tr>
         <td><strong>تاريخ الإنشاء:</strong></td>
-        <td>{{ existingUser.createdAt | removeTime }}</td>
+        <td>{{ existingUser.createdAt }}</td>
       </tr>
       <tr>
         <td><strong>عدد مرات البحث:</strong></td>

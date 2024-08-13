@@ -34,7 +34,7 @@
 
     <div class="form-group">
         <label for="dateOfLastModification">تاريخ آخر تعديل:</label>
-        <input type="date" id="dateOfLastModification" formControlName="dateOfLastModification">
+        <input type="text" placeholder="dd/mm/yyy" id="dateOfLastModification" formControlName="dateOfLastModification">
         <div
             *ngIf="sponsorForm.get('dateOfLastModification')?.invalid && sponsorForm.get('dateOfLastModification')?.touched">
             <small *ngIf="sponsorForm.get('dateOfLastModification')?.errors?.['required']">تاريخ آخر تعديل

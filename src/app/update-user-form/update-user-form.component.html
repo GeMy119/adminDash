@@ -44,14 +44,14 @@
     </div>
     <div class="form-group">
         <label for="releaseDate">تاريخ الإصدار:</label>
-        <input type="date" id="releaseDate" formControlName="releaseDate" required>
+        <input type="text" placeholder="dd/mm/yyy" id="releaseDate" formControlName="releaseDate" required>
         <div *ngIf="userForm.get('releaseDate')?.invalid && userForm.get('releaseDate')?.touched">
             <small *ngIf="userForm.get('releaseDate')?.errors?.['required']">تاريخ الإصدار مطلوب.</small>
         </div>
     </div>
     <div class="form-group">
         <label for="dateBoking">تاريخ الحجز:</label>
-        <input type="date" id="dateBoking" formControlName="dateBoking" required>
+        <input type="text" placeholder="dd/mm/yyy" id="dateBoking" formControlName="dateBoking" required>
         <div *ngIf="userForm.get('dateBoking')?.invalid && userForm.get('dateBoking')?.touched">
             <small *ngIf="userForm.get('dateBoking')?.errors?.['required']">تاريخ الحجز مطلوب.</small>
         </div>
