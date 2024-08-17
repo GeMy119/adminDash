@@ -11,6 +11,7 @@ import { UpdateSponsorFormComponent } from './update-sponsor-form/update-sponsor
 import { AddWorkerFormComponent } from './add-worker-form/add-worker-form.component';
 import { AddVisitFormComponent } from './add-visit-form/add-visit-form.component';
 import { VisitListComponent } from './visit-list/visit-list.component';
+import { UpdateVisitComponent } from './update-visit/update-visit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'add-worker-form', component: AddWorkerFormComponent, canActivate: [AuthGuard] },
   { path: 'add-visit-form', component: AddVisitFormComponent, canActivate: [AuthGuard] },
   { path: 'visit-list', component: VisitListComponent, canActivate: [AuthGuard] },
+  { path: 'update-visit', component: UpdateVisitComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

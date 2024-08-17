@@ -62,5 +62,8 @@ export class VisitListComponent implements OnInit {
     this.currentPage = newPage;
     this.loadVisits();
   }
+  onUpdateButtonClick(visit: Visit): void {
+    this.router.navigate(['/update-visit'], { state: { visit: visit } });
+  }
 }
 

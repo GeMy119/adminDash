@@ -19,6 +19,7 @@ import { AddVisitFormComponent } from './add-visit-form/add-visit-form.component
 import { VisitListComponent } from './visit-list/visit-list.component';
 import { UpdateUserFormComponent } from './update-user-form/update-user-form.component'; // إضافة استيراد UpdateUserFormComponent
 import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UpdateVisitComponent } from './update-visit/update-visit.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -36,6 +37,7 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent,
     AddVisitFormComponent,
     VisitListComponent,
+    UpdateVisitComponent,
 
   ],
   imports: [

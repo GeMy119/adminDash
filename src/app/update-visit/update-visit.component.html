@@ -1,0 +1,95 @@
+<h2 class="mt-5 text-center">نموذج تحديث التأشيرة</h2>
+<form [formGroup]="updateVisitForm" (ngSubmit)="submitForm()" class="form-container">
+    <div class="form-group">
+        <label for="visaNo">رقم التأشيرة:</label>
+        <input type="text" id="visaNo" formControlName="visaNo" required>
+        <div *ngIf="updateVisitForm.get('visaNo')?.invalid && updateVisitForm.get('visaNo')?.touched">
+            <small *ngIf="updateVisitForm.get('visaNo')?.errors?.['required']">رقم التأشيرة مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="passportNo">رقم جواز السفر:</label>
+        <input type="text" id="passportNo" formControlName="passportNo" required>
+        <div *ngIf="updateVisitForm.get('passportNo')?.invalid && updateVisitForm.get('passportNo')?.touched">
+            <small *ngIf="updateVisitForm.get('passportNo')?.errors?.['required']">رقم جواز السفر مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="code">رقم السجل:</label>
+        <input type="text" id="code" formControlName="code" required>
+        <div *ngIf="updateVisitForm.get('code')?.invalid && updateVisitForm.get('code')?.touched">
+            <small *ngIf="updateVisitForm.get('code')?.errors?.['required']">رقم السجل مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="applicationNo">رقم الطلب:</label>
+        <input type="text" id="applicationNo" formControlName="applicationNo" required>
+        <div *ngIf="updateVisitForm.get('applicationNo')?.invalid && updateVisitForm.get('applicationNo')?.touched">
+            <small *ngIf="updateVisitForm.get('applicationNo')?.errors?.['required']">رقم الطلب مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="birthDate">تاريخ الميلاد:</label>
+        <input type="text" id="birthDate" formControlName="birthDate" placeholder="dd/mm/yyyy" required>
+        <div *ngIf="updateVisitForm.get('birthDate')?.invalid && updateVisitForm.get('birthDate')?.touched">
+            <small *ngIf="updateVisitForm.get('birthDate')?.errors?.['required']">تاريخ الميلاد مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="validFrom">صالح اعتبارا من:</label>
+        <input type="text" id="validFrom" formControlName="validFrom" placeholder="dd/mm/yyyy" required>
+        <div *ngIf="updateVisitForm.get('validFrom')?.invalid && updateVisitForm.get('validFrom')?.touched">
+            <small *ngIf="updateVisitForm.get('validFrom')?.errors?.['required']">تاريخ الصلاحية من مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="validUntil">صالح حتى:</label>
+        <input type="text" id="validUntil" formControlName="validUntil" placeholder="dd/mm/yyyy" required>
+        <div *ngIf="updateVisitForm.get('validUntil')?.invalid && updateVisitForm.get('validUntil')?.touched">
+            <small *ngIf="updateVisitForm.get('validUntil')?.errors?.['required']">تاريخ الصلاحية حتى مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="typeOfVisa">نوع التأشيرة:</label>
+        <input type="text" id="typeOfVisa" formControlName="typeOfVisa" required>
+        <div *ngIf="updateVisitForm.get('typeOfVisa')?.invalid && updateVisitForm.get('typeOfVisa')?.touched">
+            <small *ngIf="updateVisitForm.get('typeOfVisa')?.errors?.['required']">نوع التأشيرة مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="durationOfStay">مدة الإقامة:</label>
+        <input type="text" id="durationOfStay" formControlName="durationOfStay" required>
+        <div *ngIf="updateVisitForm.get('durationOfStay')?.invalid && updateVisitForm.get('durationOfStay')?.touched">
+            <small *ngIf="updateVisitForm.get('durationOfStay')?.errors?.['required']">مدة الإقامة مطلوبة.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="placeOfIssue">مصدر التأشيرة:</label>
+        <input type="text" id="placeOfIssue" formControlName="placeOfIssue" required>
+        <div *ngIf="updateVisitForm.get('placeOfIssue')?.invalid && updateVisitForm.get('placeOfIssue')?.touched">
+            <small *ngIf="updateVisitForm.get('placeOfIssue')?.errors?.['required']">مصدر التأشيرة مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="entryType">عدد مرات الدخول:</label>
+        <input type="text" id="entryType" formControlName="entryType" required>
+        <div *ngIf="updateVisitForm.get('entryType')?.invalid && updateVisitForm.get('entryType')?.touched">
+            <small *ngIf="updateVisitForm.get('entryType')?.errors?.['required']">عدد مرات الدخول مطلوب.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="nationality">الجنسية:</label>
+        <input type="text" id="nationality" formControlName="nationality" required>
+        <div *ngIf="updateVisitForm.get('nationality')?.invalid && updateVisitForm.get('nationality')?.touched">
+            <small *ngIf="updateVisitForm.get('nationality')?.errors?.['required']">الجنسية مطلوبة.</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="purpose">الغرض:</label>
+        <input type="text" id="purpose" formControlName="purpose" required>
+        <div *ngIf="updateVisitForm.get('purpose')?.invalid && updateVisitForm.get('purpose')?.touched">
+            <small *ngIf="updateVisitForm.get('purpose')?.errors?.['required']">الغرض مطلوب.</small>
+        </div>
+    </div>
+    <button type="submit" [disabled]="updateVisitForm.invalid">تحديث التأشيرة</button>
+</form>

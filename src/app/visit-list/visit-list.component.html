@@ -38,6 +38,8 @@
             <td><img style="width: 50px; height: 50px;" [src]="visit.image" alt="visit image"></td>
             <td>
                 <button (click)="deleteVisit(visit._id)">Delete</button>
+                <button (click)="onUpdateButtonClick(visit)" class="btn btn-primary btn-sm">تعديل</button>
+
             </td>
         </tr>
     </tbody>
